@@ -1,5 +1,6 @@
 import LogInForm from "../../auth/LogInForm";
 import Logo from "../../assets/images/Logo.jpeg";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   return (
@@ -9,7 +10,7 @@ const Login = () => {
         <img
           src={Logo}
           alt="MealPlanner Logo"
-          className="h-12 w-auto object-contain rounded-2xl shadow-2xl"
+          className="h-12 w-auto object-contain rounded-2xl"
         />
         <h1 className="text-xl font-semibold text-green-900 font-serif">
           MealPlanner
@@ -17,7 +18,13 @@ const Login = () => {
       </div>
       <div className=" max-w-[600px] shadow-2xl rounded-3xl overflow-hidden">
         <LogInForm />
-      </div>
+      </div>{" "}
+      <p className="text-center text-sm text-gray-600 mt-6">
+        Don't have an account?{"  "}
+        <Link to="/signup" className="text-green-900 font-bold cursor-pointer">
+          Register
+        </Link>
+      </p>
     </section>
   );
 };

@@ -136,7 +136,9 @@ const SignupForm = () => {
 
       <p className="text-center text-sm text-gray-600 mt-6">
         Already have an account?{"  "}
-        <span className="text-green-900 font-bold cursor-pointer">Login</span>
+        <a className="text-green-900 font-bold cursor-pointer" href="/">
+          Login
+        </a>
       </p>
     </div>
   );
