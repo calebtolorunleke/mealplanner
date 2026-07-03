@@ -1,5 +1,5 @@
 import React from "react";
-import { mealsData } from "../../../data/meal";
+import { mealsData } from "../../data/meal";
 
 const SuggestionFood = () => {
   const slicedMeal = mealsData.slice(0, 4);
