@@ -13,8 +13,26 @@ const App = () => {
         <Routes>
           <Route element={<Login />} path="/" />
           <Route element={<Signup />} path="signup" />
-          <Route element={<Dashboard />} path="/dashboard" />
-          <Route element={<MealMedia />} path="/meals" />
+
+          <Route
+            element={
+              <protectedroute>
+                <Dashboard />
+              </protectedroute>
+            }
+            path="/dashboard"
+          />
+
+          <Route
+            element={
+              <protectedroute>
+                <MealMedia />
+              </protectedroute>
+            }
+            path="/meals"
+          />
+
+          <Route path="*" element={<Navigate to="/login" replace />} />
         </Routes>
       </BrowserRouter>
     </>
