@@ -35,3 +35,7 @@ Open a Pull Request for review before merging
 Keep components reusable
 Follow consistent folder structure
 Avoid pushing directly to main branch
+
+
+Adedayo - Add Meal,  Meal Details
+Ezekiel - Grocery List, Edit Profile
