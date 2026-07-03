@@ -1,6 +1,6 @@
 import React from "react";
 import bgImage from "../../assets/images/bgImage.avif";
-import SignupForm from "../../auth/SignupForm";
+import SignupForm from "../../components/auth/SignupForm";
 
 const Signup = () => {
   return (
@@ -28,7 +28,7 @@ const Signup = () => {
           </div>
         </div>
 
-        <SignupForm/>
+        <SignupForm />
       </div>
     </section>
   );

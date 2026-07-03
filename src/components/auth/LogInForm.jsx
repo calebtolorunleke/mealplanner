@@ -2,10 +2,46 @@ import {
   ArrowForwardRounded,
   LockOutlineRounded,
   MailOutlineOutlined,
-  PersonOutlineOutlined,
+  WindowSharp,
 } from "@mui/icons-material";
+import { useState } from "react";
 
 const LogInForm = () => {
+  const [email, setEmail] = useState("");
+  const [inputPassword, setinputPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
+
+  const signIn = async (e) => {
+    e.preventDefault();
+
+    try {
+      const fetchData = await fetch(
+        "https://backend-mealablev2.onrender.com/api/auth/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json",
+          },
+          credentials: "include",
+          body: JSON.stringify({ email: email, password: inputPassword }),
+        },
+      );
+
+      const data = await fetchData.json();
+
+      if (!fetchData.ok) {
+        throw new Error(data.message || "Invalid email or password");
+      }
+
+      WindowSharp.location.href = "/signup";
+      setIsLoading(false);
+    } catch (error) {
+      console.error(error);
+    }
+
+    console.log(email, inputPassword);
+  };
+
   return (
     <div className="bg-white p-8 lg:p-12 flex flex-col justify-center">
       <h1 className="text-3xl lg:text-5xl font-bold text-green-900">
@@ -16,7 +52,7 @@ const LogInForm = () => {
         Sign in to manage your weekly nourishment.{" "}
       </h3>
 
-      <form className="mt-8 space-y-5">
+      <form className="mt-8 space-y-5" onSubmit={(e) => signIn(e)}>
         <div className="flex flex-col gap-2">
           <label
             htmlFor=""
@@ -32,6 +68,10 @@ const LogInForm = () => {
             />
             <input
               type="text"
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
+              value={email}
               placeholder="name@example.com"
               className="w-full border border-gray-300 rounded-xl py-3 pl-12 outline-none focus:border-green-800"
             />
@@ -65,6 +105,10 @@ const LogInForm = () => {
               />
               <input
                 type="password"
+                value={inputPassword}
+                onChange={(e) => {
+                  setinputPassword(e.target.value);
+                }}
                 placeholder="Enter password"
                 className="w-full border border-gray-300 rounded-xl py-3 pl-12 outline-none focus:border-green-800"
               />
@@ -74,10 +118,17 @@ const LogInForm = () => {
 
         <button
           type="submit"
-          className="w-full bg-green-900 text-white py-3 rounded-xl font-bold hover:bg-green-800 transition flex items-center justify-center gap-2"
+          disabled={isLoading}
+          className={`w-full bg-green-900 text-white py-3 rounded-xl font-bold hover:bg-green-800 transition flex items-center justify-center gap-2 ${isLoading ? "bg-gray-600 cursor-not-allowed" : "hover-bg-green-800"}`}
         >
-          Sign in
-          <ArrowForwardRounded sx={{ fontSize: 20, color: "white" }} />
+          {isLoading ? (
+            <>
+              Sign in
+              <ArrowForwardRounded sx={{ fontSize: 20, color: "white" }} />
+            </>
+          ) : (
+            "Signing In"
+          )}
         </button>
 
         <div className="flex flex-row items-center w-full my-6">
