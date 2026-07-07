@@ -7,35 +7,35 @@ const RecommendationCard = () => {
   const [apiMeal, setApiMeal] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // useEffect(() => {
-  //   const fetchMeals = async () => {
-  //     setLoading(true);
+  useEffect(() => {
+    const fetchMeals = async () => {
+      setLoading(true);
 
-  //     const token = localStorage.getItem("token");
+      const token = localStorage.getItem("token");
 
-  //     try {
-  //       const response = await fetch(
-  //         "https://backend-mealablev2.onrender.com/api/recommended/all",
-  //         {
-  //           method: "GET",
-  //           headers: {
-  //             "Content-Type": "application/json",
-  //             Authorization: `Bearer ${token}`,
-  //           },
-  //         },
-  //       );
-  //       const data = await response.json();
-  //       setApiMeal(data.data);
-  //     } catch (error) {
-  //       console.log(error);
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
-  //   fetchMeals();
-  // }, []);
+      try {
+        const response = await fetch(
+          "http://localhost:5000/api/recommended/all",
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            credentials: "include"
+          },
+        );
+        const data = await response.json();
+        setApiMeal(data.data);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchMeals();
+  }, []);
 
-  // const recommendedMeals = mealsData.slice(0, 7);
+  const recommendedMeals = mealsData.slice(0, 7);
   return (
     <>
       {loading ? (
@@ -43,14 +43,14 @@ const RecommendationCard = () => {
       ) : (
         <section>
           <div className="flex flex-row flex-wrap gap-4">
-            {mealsData.map((meal) => (
+            {apiMeal.map((meal) => (
               <div
                 className="flex flex-col gap-4 min-w-[180px] bg-white p-3 shadow-sm hover:shadow-md rounded-lg transition-all"
                 key={meal._id}
               >
                 <div className="h-20 rounded-md bg-green-100 flex items-center justify-center">
                   <span className="text-green-900 font-bold text-sm">
-                    {meal.name.slice(0, 2).toUpperCase()}
+                    {meal?.name?.slice(0, 2).toUpperCase() || "Meal name"}
                   </span>
                 </div>
 

@@ -1,5 +1,6 @@
 import React from "react";
 import StarRoundedIcon from "@mui/icons-material/StarRounded";
+import { Link } from "react-router-dom";
 
 const WeekDate = () => {
   const today = new Date();
@@ -33,10 +34,13 @@ const WeekDate = () => {
         ))}
       </div>
 
-      <button className="flex items-center gap-2 border border-green-900 text-green-900 px-3 py-2 rounded-lg text-sm">
+      <Link to="/meals">
+        <button className="flex items-center gap-2 border cursor-pointer border-green-900 text-green-900 px-3 py-2 rounded-lg text-sm">
         <StarRoundedIcon fontSize="small" />
+
         Fill my week
-      </button>
+        </button>
+      </Link>
     </section>
   );
 };

@@ -9,14 +9,16 @@ import { useState } from "react";
 const LogInForm = () => {
   const [email, setEmail] = useState("");
   const [inputPassword, setinputPassword] = useState("");
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   const signIn = async (e) => {
     e.preventDefault();
 
     try {
       const fetchData = await fetch(
-        "https://backend-mealablev2.onrender.com/api/auth/login",
+        // "https://backend-mealablev2.onrender.com/api/auth/login",
+        "http://localhost:5000/api/auth/login",
+
         {
           method: "POST",
           headers: {
@@ -33,7 +35,7 @@ const LogInForm = () => {
         throw new Error(data.message || "Invalid email or password");
       }
 
-      WindowSharp.location.href = "/signup";
+      window.location.href = "/dashboard";
       setIsLoading(false);
     } catch (error) {
       console.error(error);
@@ -118,8 +120,8 @@ const LogInForm = () => {
 
         <button
           type="submit"
-          disabled={isLoading}
-          className={`w-full bg-green-900 text-white py-3 rounded-xl font-bold hover:bg-green-800 transition flex items-center justify-center gap-2 ${isLoading ? "bg-gray-600 cursor-not-allowed" : "hover-bg-green-800"}`}
+          // disabled={isLoading}
+          className={`w-full bg-green-900 text-white py-3 rounded-xl font-bold hover:bg-green-800 transition flex items-center justify-center gap-2 ${isLoading ? "bg-gray-600 cursor-pointer" : "hover-bg-green-800"}`}
         >
           {isLoading ? (
             <>
