@@ -6,7 +6,7 @@ const Header = () => {
     <header className="bg-green-50 py-3 px-6 flex items-center justify-between border-b border-green-100">
       {/* Branding */}
       <span className="text-xl font-black text-slate-900 tracking-tight">
-        MealPlanner
+        Mealable
       </span>
 
       {/* Navigation & Utilities */}

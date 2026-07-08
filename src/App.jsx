@@ -6,12 +6,14 @@ import "./index.css";
 import Dashboard from "./pages/dashboard/Dashboard";
 import MealMedia from "./pages/mealmedia/MealMedia";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
+import MealDetail from "./components/dayos/MealDetail";
 
 
 const App = () => {
   return (
     <>
-      <BrowserRouter>
+    <MealDetail/>
+      {/* <BrowserRouter>
         <Routes>
           <Route element={<Login />} path="/" />
           <Route element={<Signup />} path="signup" />
@@ -35,9 +37,9 @@ const App = () => {
             path="/meals"
           />
 
-          {/* <Route path="*" element={<Navigate to="/login" replace />} /> */}
+          <Route path="*" element={<Navigate to="/login" replace />} />
         </Routes>
-      </BrowserRouter>
+      </BrowserRouter> */}
     </>
   );
 };
