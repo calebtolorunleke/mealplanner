@@ -9,7 +9,7 @@ import { useState } from "react";
 const LogInForm = () => {
   const [email, setEmail] = useState("");
   const [inputPassword, setinputPassword] = useState("");
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   const signIn = async (e) => {
     e.preventDefault();
@@ -33,7 +33,7 @@ const LogInForm = () => {
         throw new Error(data.message || "Invalid email or password");
       }
 
-      WindowSharp.location.href = "/signup";
+      window.location.href = "/dashboard";
       setIsLoading(false);
     } catch (error) {
       console.error(error);
@@ -122,12 +122,12 @@ const LogInForm = () => {
           className={`w-full bg-green-900 text-white py-3 rounded-xl font-bold hover:bg-green-800 transition flex items-center justify-center gap-2 ${isLoading ? "bg-gray-600 cursor-not-allowed" : "hover-bg-green-800"}`}
         >
           {isLoading ? (
+            "Signing In"
+          ) : (
             <>
               Sign in
               <ArrowForwardRounded sx={{ fontSize: 20, color: "white" }} />
             </>
-          ) : (
-            "Signing In"
           )}
         </button>
 
