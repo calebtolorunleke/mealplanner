@@ -1,14 +1,14 @@
 import AddCircleRoundedIcon from "@mui/icons-material/AddCircleRounded";
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 
 const RecState = ({ todaysDate }) => {
-  const navigate = useNavigate();
+  const { logout } = useAuth();
 
+  // logout() calls POST /api/auth/logout to clear the HttpOnly session cookie
+  // server-side, then wipes React state and redirects to /.
   const handleLogout = () => {
-    localStorage.removeItem("userId");
-    localStorage.removeItem("username");
-    navigate("/login");
+    logout();
   };
 
   return (

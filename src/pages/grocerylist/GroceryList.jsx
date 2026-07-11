@@ -12,7 +12,7 @@ import BottomNav from "../../components/navigation/BottomNav";
 
 const fetchCategories = async () => {
   const response = await fetch(
-    "https://backend-mealablev2.onrender.com/api/grocery",
+    "http://localhost:4000/api/grocery",
     {
       method: "GET",
       headers: {

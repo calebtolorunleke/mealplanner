@@ -28,7 +28,7 @@ const SignupForm = () => {
 
     try {
       const fetchData = await fetch(
-        "https://backend-mealablev2.onrender.com/api/auth/signup",
+        "http://localhost:4000/api/auth/signup",
         {
           method: "POST",
           headers: {
