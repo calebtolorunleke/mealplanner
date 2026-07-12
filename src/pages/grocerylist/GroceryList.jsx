@@ -2,10 +2,6 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import PrintIcon from "@mui/icons-material/Print";
-import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
-import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
-import MenuBookIcon from "@mui/icons-material/MenuBook";
-import PersonIcon from "@mui/icons-material/Person";
 import BottomNav from "../../components/navigation/BottomNav";
 
 // ─── Data ────────────────────────────────────────────────────────────────────
@@ -27,7 +23,7 @@ const fetchCategories = async () => {
   if (!response.ok) {
     throw new Error(data.message || "Failed to fetch grocery list");
   }
-  return data;
+  return data.data;
 };
 
 // ─── Sub-components ───────────────────────────────────────────────────────────
