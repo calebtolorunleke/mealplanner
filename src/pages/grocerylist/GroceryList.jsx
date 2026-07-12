@@ -2,17 +2,13 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import PrintIcon from "@mui/icons-material/Print";
-import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
-import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
-import MenuBookIcon from "@mui/icons-material/MenuBook";
-import PersonIcon from "@mui/icons-material/Person";
 import BottomNav from "../../components/navigation/BottomNav";
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 
 const fetchCategories = async () => {
   const response = await fetch(
-    "http://localhost:4000/api/grocery",
+    "https://backend-mealablev2.onrender.com/api/grocery",
     {
       method: "GET",
       headers: {
@@ -27,7 +23,7 @@ const fetchCategories = async () => {
   if (!response.ok) {
     throw new Error(data.message || "Failed to fetch grocery list");
   }
-  return data;
+  return data.data;
 };
 
 // ─── Sub-components ───────────────────────────────────────────────────────────

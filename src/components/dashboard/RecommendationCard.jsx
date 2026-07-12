@@ -18,7 +18,7 @@ const RecommendationCard = () => {
 
       try {
         const response = await fetch(
-          "http://localhost:4000/api/recommended/all",
+          "https://backend-mealablev2.onrender.com/api/recommended/all",
           {
             method: "GET",
             headers: {

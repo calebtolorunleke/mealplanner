@@ -46,7 +46,7 @@ const EditProfile = () => {
   };
 
   const getProfileData = async () => {
-    const response = await fetch(`http://localhost:4000/api/profile`, {
+    const response = await fetch(`https://backend-mealablev2.onrender.com/api/profile`, {
       method: "GET",
       headers: {
         "Content-type": "application/json",
@@ -89,7 +89,7 @@ const EditProfile = () => {
       formData.append("avatar", avatarFile);
     }
 
-    const response = await fetch("http://localhost:4000/api/profile", {
+    const response = await fetch("https://backend-mealablev2.onrender.com/api/profile", {
       method: "PUT",
       credentials: "include",
       body: formData,

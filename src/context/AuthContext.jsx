@@ -16,7 +16,7 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const checkSession = async () => {
       try {
-        const res = await fetch("http://localhost:4000/api/auth/me", {
+        const res = await fetch("https://backend-mealablev2.onrender.com/api/auth/me", {
           // credentials:"include" sends the HttpOnly cookie automatically.
           credentials: "include",
         });
@@ -40,7 +40,7 @@ export const AuthProvider = ({ children }) => {
   // Expose a login helper that calls the backend. The backend sets the
   // HttpOnly cookie — we just update React state with the returned user object.
   const login = async (email, password) => {
-    const res = await fetch("http://localhost:4000/api/auth/login", {
+    const res = await fetch("https://backend-mealablev2.onrender.com/api/auth/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       // IMPORTANT: credentials:"include" is required so the browser accepts
@@ -65,7 +65,7 @@ export const AuthProvider = ({ children }) => {
   // any cached in-memory state.
   const logout = async () => {
     try {
-      await fetch("http://localhost:4000/api/auth/logout", {
+      await fetch("https://backend-mealablev2.onrender.com/api/auth/logout", {
         method: "POST",
         credentials: "include",
       });
