@@ -8,8 +8,8 @@ import { LiaPlusSolid } from "react-icons/lia";
 
 const SundayPlan = () => {
   return (
-    <section className="p-4">
-      <div className="w-full rounded-xl border border-dashed border-green-300 bg-green-50 py-10 px-6 flex flex-col items-center text-center gap-4">
+    <section className="py-2 w-full">
+      <div className="w-full rounded-2xl border-2 border-dashed border-green-200 bg-green-50/50 py-10 px-6 flex flex-col items-center text-center gap-4">
         <div className="w-16 h-16 rounded-full bg-white flex items-center justify-center shadow">
           <RestaurantMenuRounded
             sx={{ fontSize: 36 }}

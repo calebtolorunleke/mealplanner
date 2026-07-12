@@ -1,45 +1,45 @@
 import AddCircleRoundedIcon from "@mui/icons-material/AddCircleRounded";
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 
 const RecState = ({ todaysDate }) => {
-  const navigate = useNavigate();
+  const { logout } = useAuth();
 
+  // logout() calls POST /api/auth/logout to clear the HttpOnly session cookie
+  // server-side, then wipes React state and redirects to /.
   const handleLogout = () => {
-    localStorage.removeItem("userId");
-    localStorage.removeItem("username");
-    navigate("/login");
+    logout();
   };
 
   return (
-    <div className="flex flex-col gap-5">
-      <div className="flex justify-between items-center">
+    <div className="flex flex-col gap-4">
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
         <div className="flex flex-col gap-1">
-          <h1 className="font-extrabold text-4xl text-green-950">
+          <h1 className="font-extrabold text-3xl sm:text-4xl text-green-950 tracking-tight">
             Your Weekly Table
           </h1>
-          <h3>{todaysDate}</h3>
+          <h3 className="text-gray-500 text-sm sm:text-base">{todaysDate}</h3>
         </div>
 
-        <div className="flex gap-2">
-          <button className="flex items-center justify-center gap-2 bg-green-900 hover:bg-green-800 text-white font-bold py-2.5 px-4 rounded-xl text-sm transition-colors mt-2 shadow-sm">
+        <div className="flex gap-2 w-full sm:w-auto">
+          <button className="flex-1 sm:flex-none flex items-center justify-center gap-2 bg-green-900 hover:bg-green-800 text-white font-bold py-2.5 px-4 rounded-xl text-sm transition-all duration-250 cursor-pointer shadow-sm active:scale-95">
             <AddCircleRoundedIcon className="w-4 h-4 text-white" />
             <span>Add Meal</span>
           </button>
 
           <button
             onClick={handleLogout}
-            className="flex items-center justify-center gap-2 bg-red-500 cursor-pointer hover:bg-red-600 text-white font-bold py-2.5 px-4 rounded-xl text-sm transition-colors mt-2 shadow-sm"
+            className="flex-1 sm:flex-none flex items-center justify-center gap-2 bg-red-500 hover:bg-red-600 text-white font-bold py-2.5 px-4 rounded-xl text-sm transition-all duration-250 cursor-pointer shadow-sm active:scale-95"
           >
             Logout
           </button>
         </div>
       </div>
 
-      <div>
-        <h1 className="uppercase text-green-950 font-bold text-md">
-          recommendation
-        </h1>
+      <div className="mt-2">
+        <h2 className="uppercase text-green-950 font-bold text-xs tracking-wider">
+          recommendations
+        </h2>
       </div>
     </div>
   );

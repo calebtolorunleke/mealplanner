@@ -13,7 +13,7 @@ cd meal-planner
 
 ### 2. Install dependencies
 
-pm install
+npm install
 
 ### 3. Start development server
 

@@ -2,44 +2,38 @@ import {
   ArrowForwardRounded,
   LockOutlineRounded,
   MailOutlineOutlined,
-  WindowSharp,
 } from "@mui/icons-material";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 
 const LogInForm = () => {
   const [email, setEmail] = useState("");
   const [inputPassword, setinputPassword] = useState("");
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  const { login } = useAuth();
+  const navigate = useNavigate();
 
   const signIn = async (e) => {
     e.preventDefault();
+    setError("");
+    setIsLoading(true);
 
     try {
-      const fetchData = await fetch(
-        "https://backend-mealablev2.onrender.com/api/auth/login",
-        {
-          method: "POST",
-          headers: {
-            "Content-type": "application/json",
-          },
-          credentials: "include",
-          body: JSON.stringify({ email: email, password: inputPassword }),
-        },
-      );
-
-      const data = await fetchData.json();
-
-      if (!fetchData.ok) {
-        throw new Error(data.message || "Invalid email or password");
-      }
-
-      WindowSharp.location.href = "/signup";
+      // login() calls POST /api/auth/login with credentials:"include".
+      // The backend must respond with:
+      //   Set-Cookie: __Host-session=<jwt>; HttpOnly; Secure; SameSite=Lax; Path=/
+      // The token never touches localStorage or sessionStorage.
+      await login(email, inputPassword);
+      navigate("/dashboard", { replace: true });
+    } catch (err) {
+      // Display a generic error — never log the raw credentials.
+      setError(err.message || "Sign in failed. Please try again.");
+    } finally {
       setIsLoading(false);
-    } catch (error) {
-      console.error(error);
     }
-
-    console.log(email, inputPassword);
   };
 
   return (
@@ -51,6 +45,12 @@ const LogInForm = () => {
       <h3 className="text-green-900 text-md mt-2">
         Sign in to manage your weekly nourishment.{" "}
       </h3>
+
+      {error && (
+        <p className="mt-4 text-sm text-red-600 font-medium" role="alert">
+          {error}
+        </p>
+      )}
 
       <form className="mt-8 space-y-5" onSubmit={(e) => signIn(e)}>
         <div className="flex flex-col gap-2">
@@ -122,12 +122,12 @@ const LogInForm = () => {
           className={`w-full bg-green-900 text-white py-3 rounded-xl font-bold hover:bg-green-800 transition flex items-center justify-center gap-2 ${isLoading ? "bg-gray-600 cursor-not-allowed" : "hover-bg-green-800"}`}
         >
           {isLoading ? (
+            "Signing In"
+          ) : (
             <>
               Sign in
               <ArrowForwardRounded sx={{ fontSize: 20, color: "white" }} />
             </>
-          ) : (
-            "Signing In"
           )}
         </button>
 

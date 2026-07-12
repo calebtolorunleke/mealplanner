@@ -6,7 +6,7 @@ const ProtectedRoute = ({ children }) => {
 
   // no ticke, kick back to login
   if (!ticket) {
-    return <Navigate to="/login" replace />;
+    return <Navigate to="/" replace />;
   }
   return children;
 };
